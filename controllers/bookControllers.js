@@ -2,6 +2,7 @@ import sendResponse from "../helpers/sendResponse.js";
 import {
   addBookService,
   deleteBookService,
+  getBookDetailService,
   getBooksService,
   updateBookService,
 } from "../services/booksServices.js";
@@ -10,6 +11,17 @@ import {
 const getBooksController = async (req, res, next) => {
   try {
     const result = await getBooksService(req);
+    if (result) sendResponse(res, result);
+  } catch (error) {
+    console.log("Error In Register Controller =>", error);
+    next(error);
+  }
+};
+
+// get singal books
+const getBookDetailController = async (req, res, next) => {
+  try {
+    const result = await getBookDetailService(req);
     if (result) sendResponse(res, result);
   } catch (error) {
     console.log("Error In Register Controller =>", error);
@@ -54,4 +66,5 @@ export {
   addBookController,
   updateBookController,
   deleteBookController,
+  getBookDetailController,
 };

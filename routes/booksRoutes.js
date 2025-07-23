@@ -3,6 +3,7 @@ import validateRequest from "../middlewares/validateRequest.js";
 import {
   addBookController,
   deleteBookController,
+  getBookDetailController,
   getBooksController,
   updateBookController,
 } from "../controllers/bookControllers.js";
@@ -11,6 +12,9 @@ import booksValidations from "../validations/booksValidations.js";
 const booksRouter = express.Router();
 
 booksRouter.get("/", getBooksController);
+
+booksRouter.get("/:id", getBookDetailController);
+
 booksRouter.post(
   "/",
   validateToken,

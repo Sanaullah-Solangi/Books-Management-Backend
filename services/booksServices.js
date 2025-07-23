@@ -1,10 +1,32 @@
-import { addBook, deleteBook, getAllBooks, updateBook } from "../db/books.js";
+import {
+  addBook,
+  deleteBook,
+  getAllBooks,
+  getBookDetail,
+  updateBook,
+} from "../db/books.js";
 import serviceResponse from "../helpers/serviceResponse.js";
 
 const getBooksService = async (payload) => {
   try {
     const books = await getAllBooks();
     return serviceResponse(200, false, books, "Books fetched successfully");
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+const getBookDetailService = async (payload) => {
+  try {
+    const { id } = payload.params;
+    const books = await getBookDetail(id);
+    return serviceResponse(
+      200,
+      false,
+      books,
+      "Book's Details fetched successfully"
+    );
   } catch (error) {
     console.log(error);
     throw error;
@@ -47,6 +69,7 @@ const deleteBookService = async (req) => {
 };
 export {
   getBooksService,
+  getBookDetailService,
   addBookService,
   updateBookService,
   deleteBookService,
