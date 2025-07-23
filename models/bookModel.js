@@ -7,12 +7,12 @@ const booksSchema = Schema({
   genre: { type: String },
   publishedYear: { type: Date },
   createdBy: {
-    type: mongoose.Schema.type.ObjectId,
-    required: true,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Users",
   },
 });
 
-return mongoose.models.Books || mongoose.model("Books", booksSchema);
+const BooksModel =
+  mongoose.models.Books || mongoose.model("Books", booksSchema);
 
-export default getStudentModel;
+export default BooksModel;

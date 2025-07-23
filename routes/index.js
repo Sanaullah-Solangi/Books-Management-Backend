@@ -1,8 +1,8 @@
 import express from "express";
 const router = express.Router();
-import studentRouter from "./bookRoutes.js";
 import authRoutes from "./authRoutes.js";
+import booksRouter from "./booksRoutes.js";
 
-router.use("/students", studentRouter);
 router.use("/auth", authRoutes);
+router.use("/books", booksRouter);
 export default router;

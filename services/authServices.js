@@ -28,8 +28,8 @@ const registerService = async (payload) => {
 const loginService = async (payload) => {
   try {
     const { email, password } = payload;
-
     const isExistingUser = await getUserByEmail(email);
+    console.log(isExistingUser);
     if (!isExistingUser)
       return serviceResponse(404, true, null, "User Not Exist");
 
@@ -38,7 +38,7 @@ const loginService = async (payload) => {
     if (!isValidPass)
       return serviceResponse(400, true, null, "Invalid Password");
 
-    const token = generateToken({ ...payload });
+    const token = generateToken({ ...isExistingUser });
     return serviceResponse(
       200,
       false,
